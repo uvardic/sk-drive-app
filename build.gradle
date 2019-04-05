@@ -1,0 +1,31 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'eclipse'
+
+group 'SK1'
+
+version = findProperty('sk_drive_app_version')
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    flatDir {
+        dirs '../sk-libs'
+    }
+
+    mavenCentral()
+}
+
+libsDirName = '../../sk-libs'
+
+jar {
+    baseName = 'google-drive-app'
+    version = (findProperty('sk_drive_app_version'))
+}
+
+dependencies {
+    compile name: 'google-drive-impl-' + findProperty('sk_google_drive_impl_version')
+}
