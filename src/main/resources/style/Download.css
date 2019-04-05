@@ -8,7 +8,7 @@
 }
 
 .label_container {
-    -fx-padding: 0 50 20 50;
+    -fx-padding: 0 50 30 50;
 }
 
 .box {
@@ -19,5 +19,18 @@
 
     -fx-pref-width: 300px;
     -fx-pref-height: 20px;
+}
+
+.upload_button_container {
+    -fx-padding: 30 0 0 0;
+}
+
+.upload_button {
+    -jfx-button-type: FLAT;
+    -fx-background-color: #137AD3;
+    -fx-text-fill: #d3d3d3;
+
+    -fx-pref-width: 300px;
+    -fx-pref-height: 32px;
 }
 

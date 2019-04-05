@@ -2,8 +2,17 @@
     -fx-background-color: #313341;
 }
 
-.input_container {
+.label {
+    -fx-text-fill: #808080;
+    -fx-font-size: 16px;
+}
+
+.label_container {
     -fx-padding: 0 50 0 50;
+}
+
+.input_container {
+    -fx-padding: 0 50 30 50;
 }
 
 .input {
@@ -12,6 +21,44 @@
     -jfx-unfocus-color: #808080;
     -fx-prompt-text-fill: #808080;
 
-    -fx-padding: 40 0 0 0;
+    -fx-padding: 30 0 0 0;
     -fx-pref-height: 20px;
 }
+
+.file_button_container {
+    -fx-padding: 0 30 30 50;
+}
+
+.file_button {
+    -jfx-button-type: FLAT;
+    -fx-border-color: #808080;
+    -fx-text-fill: #d3d3d3;
+
+    -fx-pref-width: 80px;
+    -fx-pref-height: 20px;
+}
+
+.select_file_label {
+    -fx-text-fill: #808080;
+    -fx-font-size: 14px;
+    -fx-padding: 0 0 0 30;
+}
+
+.file_label {
+    -fx-text-fill: #137AD3;
+    -fx-font-size: 14px;
+}
+
+.upload_button_container {
+    -fx-padding: 0 0 0 0;
+}
+
+.upload_button {
+    -jfx-button-type: FLAT;
+    -fx-background-color: #137AD3;
+    -fx-text-fill: #d3d3d3;
+
+    -fx-pref-width: 300px;
+    -fx-pref-height: 32px;
+}
+

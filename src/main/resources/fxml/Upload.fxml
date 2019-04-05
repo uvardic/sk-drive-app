@@ -3,14 +3,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import scene.manager.SceneManager?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="scene.controller.UploadController" prefWidth="400.0" alignment="TOP_CENTER"
+      fx:controller="scene.controller.UploadController" prefWidth="400.0" alignment="CENTER"
       stylesheets="@../style/Upload.css" styleClass="root">
     <prefHeight>
         <SceneManager fx:constant="APP_HEIGHT"/>
     </prefHeight>
+    <VBox alignment="BASELINE_LEFT" styleClass="label_container">
+        <Label text="Student answer"/>
+    </VBox>
     <VBox alignment="TOP_CENTER" styleClass="input_container">
         <JFXTextField promptText="Name" styleClass="input"/>
         <JFXTextField promptText="Index" styleClass="input"/>
+    </VBox>
+    <HBox alignment="BASELINE_LEFT" styleClass="file_button_container">
+        <JFXButton text="Answer" styleClass="file_button"/>
+        <Label text="Select a file" styleClass="select_file_label"/>
+    </HBox>
+    <VBox alignment="TOP_CENTER" styleClass="upload_button_container">
+        <JFXButton text="UPLOAD ANSWER" styleClass="upload_button"/>
     </VBox>
 </VBox>
