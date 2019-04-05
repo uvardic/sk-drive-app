@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import scene.manager.SceneManager?>
+<?import javafx.scene.layout.Region?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="scene.controller.SideMenuController" prefWidth="200.0"
+      stylesheets="@../style/SideMenu.css" styleClass="root" alignment="TOP_CENTER">
+    <prefHeight>
+        <SceneManager fx:constant="APP_HEIGHT"/>
+    </prefHeight>
+    <VBox alignment="TOP_CENTER">
+        <ImageView>
+            <Image url="@../img/driveLogo.png"/>
+        </ImageView>
+        <Label text="GoogleDrive" styleClass="logo_text"/>
+    </VBox>
+    <Region prefHeight="75"/>
+    <VBox alignment="TOP_CENTER">
+        <Label fx:id="downloadOption" text="Download" styleClass="selected_menu_option"
+               onMouseClicked="#startDownloadState"/>
+        <Label fx:id="uploadOption" text="Upload" styleClass="menu_option"
+               onMouseClicked="#startUploadState"/>
+    </VBox>
+    <Region prefHeight="140"/>
+    <Label text="Version 0.0.1" styleClass="version_text"/>
+</VBox>

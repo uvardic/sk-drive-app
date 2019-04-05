@@ -1,0 +1,17 @@
+.root {
+    -fx-background-color: #313341;
+}
+
+.input_container {
+    -fx-padding: 0 50 0 50;
+}
+
+.input {
+    -jfx-focus-color: #137AD3;
+    -fx-text-inner-color: #d3d3d3;
+    -jfx-unfocus-color: #808080;
+    -fx-prompt-text-fill: #808080;
+
+    -fx-padding: 40 0 0 0;
+    -fx-pref-height: 20px;
+}

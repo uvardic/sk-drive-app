@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import scene.manager.SceneManager?>
+<?import com.jfoenix.controls.JFXTextField?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="scene.controller.UploadController" prefWidth="400.0" alignment="TOP_CENTER"
+      stylesheets="@../style/Upload.css" styleClass="root">
+    <prefHeight>
+        <SceneManager fx:constant="APP_HEIGHT"/>
+    </prefHeight>
+    <VBox alignment="TOP_CENTER" styleClass="input_container">
+        <JFXTextField promptText="Name" styleClass="input"/>
+        <JFXTextField promptText="Index" styleClass="input"/>
+    </VBox>
+</VBox>

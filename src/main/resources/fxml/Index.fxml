@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import scene.manager.SceneManager?>
+<?import javafx.scene.layout.Pane?>
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="scene.controller.IndexController">
+    <prefWidth>
+        <SceneManager fx:constant="APP_WIDTH"/>
+    </prefWidth>
+    <prefHeight>
+        <SceneManager fx:constant="APP_HEIGHT"/>
+    </prefHeight>
+    <HBox>
+        <fx:include fx:id="sideMenu" source="SideMenu.fxml"/>
+        <Pane fx:id="content"/>
+    </HBox>
+</VBox>
