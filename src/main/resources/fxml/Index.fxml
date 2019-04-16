@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import scene.manager.SceneManager?>
-<?import javafx.scene.layout.Pane?>
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="scene.controller.IndexController">
     <prefWidth>
-        <SceneManager fx:constant="APP_WIDTH"/>
+        <SceneManager fx:constant="WIDTH"/>
     </prefWidth>
     <prefHeight>
-        <SceneManager fx:constant="APP_HEIGHT"/>
+        <SceneManager fx:constant="HEIGHT"/>
     </prefHeight>
     <HBox>
-        <fx:include fx:id="sideMenu" source="SideMenu.fxml"/>
+        <fx:include source="SideMenu.fxml" fx:id="sideMenu"/>
         <Pane fx:id="content"/>
     </HBox>
 </VBox>

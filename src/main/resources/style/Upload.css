@@ -62,3 +62,7 @@
     -fx-pref-height: 32px;
 }
 
+.error {
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+}

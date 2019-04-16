@@ -22,12 +22,11 @@ repositories {
 libsDirName = '../../sk-libs'
 
 jar {
-    baseName = 'google-drive-app'
     version = (findProperty('sk_drive_app_version'))
 }
 
 dependencies {
-    compile name: 'google-drive-impl-' + findProperty('sk_google_drive_impl_version')
-    compile name: 'file-system-' + findProperty('sk_file_system_version')
+    compile name: 'sk-drive-' + findProperty('sk_drive_version')
     compile 'com.jfoenix:jfoenix:8.0.8'
+
 }

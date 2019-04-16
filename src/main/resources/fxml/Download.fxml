@@ -3,22 +3,25 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.*?>
 <?import scene.manager.SceneManager?>
 <VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
       fx:controller="scene.controller.DownloadController" prefWidth="400.0" alignment="CENTER"
       stylesheets="@../style/Download.css" styleClass="root">
     <prefHeight>
-        <SceneManager fx:constant="APP_HEIGHT"/>
+        <SceneManager fx:constant="HEIGHT"/>
     </prefHeight>
 <!--    <Region prefHeight="150"/>-->
     <VBox alignment="BASELINE_LEFT" styleClass="label_container">
         <Label text="Select a group"/>
     </VBox>
     <VBox alignment="TOP_CENTER">
-        <JFXComboBox promptText="Group" styleClass="box"/>
+        <JFXComboBox fx:id="groups" promptText="Group" styleClass="box" editable="true"/>
     </VBox>
-    <VBox alignment="TOP_CENTER" styleClass="upload_button_container">
-        <JFXButton text="DOWNLOAD EXAM" styleClass="upload_button"/>
+    <VBox alignment="TOP_CENTER" styleClass="download_button_container">
+        <JFXButton fx:id="downloadButton" text="DOWNLOAD EXAM" styleClass="download_button" onAction="#downloadAction"/>
+    </VBox>
+    <VBox alignment="TOP_CENTER">
+        <Label fx:id="message" styleClass="error"/>
     </VBox>
 </VBox>

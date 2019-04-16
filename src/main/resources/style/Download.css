@@ -21,11 +21,11 @@
     -fx-pref-height: 20px;
 }
 
-.upload_button_container {
-    -fx-padding: 30 0 0 0;
+.download_button_container {
+    -fx-padding: 30 0 30 0;
 }
 
-.upload_button {
+.download_button {
     -jfx-button-type: FLAT;
     -fx-background-color: #137AD3;
     -fx-text-fill: #d3d3d3;
@@ -34,3 +34,12 @@
     -fx-pref-height: 32px;
 }
 
+.error {
+    -fx-text-fill: red;
+    -fx-font-size: 14px;
+}
+
+.approved {
+    -fx-text-fill: #137AD3;
+    -fx-font-size: 14px;
+}

@@ -4,8 +4,6 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import scene.manager.SceneManager;
 
-import java.net.URL;
-
 public class App extends Application {
 
     public static void main(final String... args) {
@@ -14,10 +12,8 @@ public class App extends Application {
 
     @Override
     public void start(final Stage stage) {
-        final URL indexURL = getClass().getResource("/fxml/Index.fxml");
-
         stage.setTitle("Google Drive App");
-        stage.setScene(SceneManager.loadScene(indexURL));
+        stage.setScene(SceneManager.loadScene(SceneManager.INDEX_PATH));
         stage.setResizable(false);
         stage.show();
     }
