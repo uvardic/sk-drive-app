@@ -42,6 +42,11 @@ public class UploadController {
         this.driveService = checkNotNull(driveService);
     }
 
+    private void showErrorMessage(final String value) {
+        SceneManager.changeStyleClass(message, "error");
+        message.setText(value);
+    }
+
     public void chooseAction() {
         final FileChooser fileChooser = new FileChooser();
 
@@ -64,17 +69,8 @@ public class UploadController {
     }
 
     public void uploadAction() {
-        if (!checkInput()) {
-            SceneManager.changeStyleClass(message, "error");
-            message.setText("Invalid input, some fields are empty");
+        if (!checkInput())
             return;
-        }
-
-        if (!isUploadDirValid()) {
-            SceneManager.changeStyleClass(message, "error");
-            message.setText(String.format("Invalid input, %s is not a valid group", groupFiled.getText()));
-            return;
-        }
 
         message.setText("");
 
@@ -83,56 +79,101 @@ public class UploadController {
         final String destinationPath = String.format("%s/%s/", IndexController.ROOT_DIRECTORY, groupFiled.getText());
 
         try {
-            driveService.upload(compressed.getPath(), createMetaData(), destinationPath);
+            driveService.upload(compressed.getAbsolutePath(), createMetaData(compressed), destinationPath);
         } catch (Exception e) {
-            SceneManager.changeStyleClass(message, "error");
-            message.setText(String.format("Error while uploading %s", compressed.getName()));
+            showErrorMessage(String.format("Error while uploading %s", compressed.getName()));
+            e.printStackTrace();
         }
 
         SceneManager.changeStyleClass(message, "approved");
-        message.setText(String.format("%s uploaded", compressed.getName()));
+        message.setText("Response uploaded");
 
         //noinspection ResultOfMethodCallIgnored
         compressed.delete();
     }
 
     private boolean checkInput() {
-        if (nameField.getText().isEmpty())
+        if (nameField.getText().isEmpty()) {
+            showErrorMessage("Invalid input, name field is empty");
             return false;
+        }
 
-        if (indexField.getText().isEmpty())
+        if (indexField.getText().isEmpty()) {
+            showErrorMessage("Invalid input, index field is empty");
             return false;
+        }
 
-        if (groupFiled.getText().isEmpty())
+        if (groupFiled.getText().isEmpty()) {
+            showErrorMessage("Invalid input, group field is empty");
             return false;
+        }
 
-        return selectedFile != null;
+        if (selectedFile == null) {
+            showErrorMessage("Invalid input, file not selected");
+            return false;
+        }
 
+        return  validateInput(nameField.getText()) &&
+                validateInput(indexField.getText()) &&
+                validateInput(groupFiled.getText()) &&
+                isUploadDirValid();
+    }
+
+    private boolean validateInput(final String input) {
+        if (input.contains("\\")) {
+            showErrorMessage("Invalid input, contains invalid char \\");
+            return false;
+        }
+
+        if (input.contains("/")) {
+            showErrorMessage("Invalid input, contains invalid char /");
+            return false;
+        }
+
+        if (input.contains("_")) {
+            showErrorMessage("Invalid input, contains invalid char _");
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isUploadDirValid() {
+        final DownloadController downloadController = SceneManager.getDownloadComponents().getController();
+
+        boolean valid = downloadController.getChildren().stream()
+                .map(File::getName)
+                .anyMatch(fileName -> fileName.equals(groupFiled.getText()));
+
+        if (!valid)
+            showErrorMessage(String.format("Invalid input, %s is not a valid group", groupFiled.getText()));
+
+        return valid;
     }
 
     private java.io.File compressSelected() {
-        final String destination = String.format("uploads/%s.zip", selectedFile.getName());
+        final String destination = String.format("uploads/%s", createCompressedFileName());
 
         try {
             Compression.compress(selectedFile, destination);
         } catch (IOException e) {
+            showErrorMessage("Error while compressing");
             e.printStackTrace();
         }
 
         return new java.io.File(destination);
     }
 
-    private boolean isUploadDirValid() {
-        final DownloadController downloadController = SceneManager.getDownloadComponents().getController();
-
-        return downloadController.getChildren().stream()
-                .map(File::getName)
-                .anyMatch(fileName -> fileName.equals(groupFiled.getText()));
+    private String createCompressedFileName() {
+        return String.format("[UUP] Response %s_%s_%s.zip",
+                nameField.getText().toLowerCase(),
+                indexField.getText().toLowerCase(),
+                groupFiled.getText().toLowerCase());
     }
 
-    private FileMetaData createMetaData() {
+    private FileMetaData createMetaData(final java.io.File file) {
         return new FileMetaData.FileMetaDataBuilder()
-                .fileName(selectedFile.getName())
+                .fileName(file.getName())
                 .description(getDescription())
                 .build();
     }
