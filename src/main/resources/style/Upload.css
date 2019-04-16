@@ -25,6 +25,16 @@
     -fx-pref-height: 20px;
 }
 
+.invalid_input {
+    -jfx-focus-color: red;
+    -fx-text-inner-color: #d3d3d3;
+    -jfx-unfocus-color: #808080;
+    -fx-prompt-text-fill: #808080;
+
+    -fx-padding: 30 0 0 0;
+    -fx-pref-height: 20px;
+}
+
 .file_button_container {
     -fx-padding: 0 30 30 50;
 }
@@ -41,7 +51,13 @@
 .select_file_label {
     -fx-text-fill: #808080;
     -fx-font-size: 14px;
-    -fx-padding: 0 0 0 30;
+    -fx-padding: 0 0 0 20;
+}
+
+.approved_file_label {
+    -fx-text-fill: #137AD3;
+    -fx-font-size: 14px;
+    -fx-padding: 0 0 0 20;
 }
 
 .file_label {
@@ -65,4 +81,13 @@
 .error {
     -fx-text-fill: red;
     -fx-font-size: 14px;
+
+    -fx-padding: 20 0 0 0;
+}
+
+.approved {
+    -fx-text-fill: #137AD3;
+    -fx-font-size: 14px;
+
+    -fx-padding: 20 0 0 0;
 }

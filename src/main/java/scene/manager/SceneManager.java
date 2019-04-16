@@ -1,6 +1,7 @@
 package scene.manager;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import scene.controller.DownloadController;
 import scene.controller.IndexController;
 import scene.controller.SideMenuController;
@@ -83,5 +84,12 @@ public class SceneManager {
         checkNotNull(parentURL, String.format("Parent not found at: %s", parentPath));
 
         return parentURL;
+    }
+
+    public static void changeStyleClass(final Parent parent, final String styleClassName) {
+        checkNotNull(parent);
+
+        parent.getStyleClass().clear();
+        parent.getStyleClass().add(styleClassName);
     }
 }

@@ -15,17 +15,18 @@
         <Label text="Student answer"/>
     </VBox>
     <VBox alignment="TOP_CENTER" styleClass="input_container">
-        <JFXTextField promptText="Name" styleClass="input"/>
-        <JFXTextField promptText="Index" styleClass="input"/>
+        <JFXTextField fx:id="nameField" promptText="Name" styleClass="input"/>
+        <JFXTextField fx:id="indexField" promptText="Index" styleClass="input"/>
+        <JFXTextField fx:id="groupFiled" promptText="Group" styleClass="input"/>
     </VBox>
     <HBox alignment="BASELINE_LEFT" styleClass="file_button_container">
-        <JFXButton text="Answer" styleClass="file_button"/>
-        <Label text="Select a file" styleClass="select_file_label"/>
+        <JFXButton text="Choose" styleClass="file_button" onAction="#chooseAction"/>
+        <Label fx:id="fileLabel" text="Select a file" styleClass="select_file_label"/>
     </HBox>
     <VBox alignment="TOP_CENTER" styleClass="upload_button_container">
-        <JFXButton text="UPLOAD ANSWER" styleClass="upload_button"/>
+        <JFXButton text="UPLOAD ANSWER" styleClass="upload_button" onAction="#uploadAction"/>
     </VBox>
     <VBox alignment="TOP_CENTER">
-        <Label fx:id="errorMessage" styleClass="error"/>
+        <Label fx:id="message" styleClass="error"/>
     </VBox>
 </VBox>

@@ -29,11 +29,8 @@ public class SideMenuController {
         content.getChildren().clear();
         content.getChildren().add(SceneManager.getDownloadComponents().getParent());
 
-        downloadOption.getStyleClass().clear();
-        downloadOption.getStyleClass().add("selected_menu_option");
-
-        uploadOption.getStyleClass().clear();
-        uploadOption.getStyleClass().add("menu_option");
+        SceneManager.changeStyleClass(downloadOption, "selected_menu_option");
+        SceneManager.changeStyleClass(uploadOption, "menu_option");
     }
 
     public void startUploadState() {
@@ -42,10 +39,7 @@ public class SideMenuController {
         content.getChildren().clear();
         content.getChildren().add(SceneManager.getUploadComponents().getParent());
 
-        uploadOption.getStyleClass().clear();
-        uploadOption.getStyleClass().add("selected_menu_option");
-
-        downloadOption.getStyleClass().clear();
-        downloadOption.getStyleClass().add("menu_option");
+        SceneManager.changeStyleClass(downloadOption, "menu_option");
+        SceneManager.changeStyleClass(uploadOption, "selected_menu_option");
     }
 }

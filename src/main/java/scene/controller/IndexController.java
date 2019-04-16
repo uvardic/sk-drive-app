@@ -45,7 +45,7 @@ public class IndexController implements Initializable {
             disableApp();
             driveService.terminate();
         } else {
-            initializeDownloadScene();
+            shareDriveService();
         }
     }
 
@@ -60,10 +60,14 @@ public class IndexController implements Initializable {
         downloadController.getDownloadButton().setDisable(true);
     }
 
-    private void initializeDownloadScene() {
+    private void shareDriveService() {
         final DownloadController downloadController = SceneManager.getDownloadComponents().getController();
 
+        final UploadController uploadController = SceneManager.getUploadComponents().getController();
+
         downloadController.setDriveService(driveService);
+        uploadController.setDriveService(driveService);
+
         downloadController.initializeGroups();
         downloadController.showApprovedMessage(String.format("Connected to %s", ROOT_DIRECTORY));
     }

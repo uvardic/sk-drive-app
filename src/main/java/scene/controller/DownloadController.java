@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import system.FileSystem;
 
+import java.util.Collections;
 import java.util.List;
 
 import static util.Preconditions.checkNotNull;
@@ -33,6 +34,10 @@ public class DownloadController {
         return downloadButton;
     }
 
+    List<File> getChildren() {
+        return Collections.unmodifiableList(children);
+    }
+
     void showErrorMessage(final String value) {
         checkNotNull(value);
 
@@ -55,10 +60,15 @@ public class DownloadController {
         children = driveService.findFileByParent(root);
 
         children.stream()
+                .filter(this::isDirectory)
                 .map(File::getName)
                 .forEach(group -> groups.getItems().add(group));
 
         groups.getSelectionModel().select(0);
+    }
+
+    private boolean isDirectory(final File file) {
+        return !file.getName().contains(".");
     }
 
     void setDriveService(final FileSystem<File> driveService) {

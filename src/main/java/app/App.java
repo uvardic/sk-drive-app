@@ -11,12 +11,19 @@ public class App extends Application {
         launch(args);
     }
 
+    private static Stage stage;
+
     @Override
     public void start(final Stage stage) {
+        App.stage = stage;
+
         stage.setTitle("Google Drive App");
         stage.setScene(new Scene(SceneManager.getIndexComponents().getParent()));
         stage.setResizable(false);
         stage.show();
     }
 
+    public static Stage getStage() {
+        return stage;
+    }
 }
