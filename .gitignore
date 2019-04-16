@@ -1,7 +1,6 @@
 # Created by .ignore support plugin (hsz.mobi)
 ### Java template
 # Compiled class file
-*.class
 
 # Log file
 *.log
@@ -46,3 +45,5 @@ gradle-app.setting
 *.iml
 out
 gen
+
+tokens

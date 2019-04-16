@@ -1,8 +1,10 @@
 package scene.manager;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import scene.controller.DownloadController;
+import scene.controller.IndexController;
+import scene.controller.SideMenuController;
+import scene.controller.UploadController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -15,41 +17,59 @@ public class SceneManager {
 
     public static final double HEIGHT = 400;
 
-    public static final String INDEX_PATH = "/fxml/Index.fxml";
+    private static final String INDEX_PATH = "/fxml/Index.fxml";
 
-    public static final String SIDE_MENU_PATH = "/fxml/SideMenu.fxml";
+    private static final String SIDE_MENU_PATH = "/fxml/SideMenu.fxml";
 
-    public static final String DOWNLOAD_PATH = "/fxml/Download.fxml";
+    private static final String DOWNLOAD_PATH = "/fxml/Download.fxml";
 
-    public static final String UPLOAD_PATH = "/fxml/Upload.fxml";
+    private static final String UPLOAD_PATH = "/fxml/Upload.fxml";
+
+    private static SceneComponents<IndexController> indexComponents;
+
+    private static SceneComponents<SideMenuController> sideMenuComponents;
+
+    private static SceneComponents<DownloadController> downloadComponents;
+
+    private static SceneComponents<UploadController> uploadComponents;
 
     private SceneManager() {}
 
-    public static Scene loadScene(final String parentPath) {
-        checkNotNull(parentPath);
+    public static SceneComponents<IndexController> getIndexComponents() {
+        if (indexComponents == null)
+            indexComponents = getSceneComponents(INDEX_PATH);
 
-        return new Scene(loadParent(parentPath));
+        return indexComponents;
     }
 
-    public static Parent loadParent(final String parentPath) {
-        checkNotNull(parentPath);
+    public static SceneComponents<SideMenuController> getSideMenuComponents() {
+        if (sideMenuComponents == null)
+            sideMenuComponents = getSceneComponents(SIDE_MENU_PATH);
 
-        try {
-            return FXMLLoader.load(getParentURL(parentPath));
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-
-        throw new RuntimeException();
+        return sideMenuComponents;
     }
 
-    public static <E> ScenePair<Parent, E> getScenePair(final String parentPath) {
+    public static SceneComponents<DownloadController> getDownloadComponents() {
+        if (downloadComponents == null)
+            downloadComponents = getSceneComponents(DOWNLOAD_PATH);
+
+        return downloadComponents;
+    }
+
+    public static SceneComponents<UploadController> getUploadComponents() {
+        if (uploadComponents == null)
+            uploadComponents = getSceneComponents(UPLOAD_PATH);
+
+        return uploadComponents;
+    }
+
+    private static <T> SceneComponents<T> getSceneComponents(final String parentPath) {
         checkNotNull(parentPath);
 
         final FXMLLoader fxmlLoader = new FXMLLoader(getParentURL(parentPath));
 
         try {
-            return new ScenePair<>(fxmlLoader.load(), fxmlLoader.getController());
+            return new SceneComponents<>(fxmlLoader.load(), fxmlLoader.getController());
         } catch (IOException e) {
             e.printStackTrace();
         }

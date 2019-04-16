@@ -1,6 +1,7 @@
 package app;
 
 import javafx.application.Application;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import scene.manager.SceneManager;
 
@@ -13,7 +14,7 @@ public class App extends Application {
     @Override
     public void start(final Stage stage) {
         stage.setTitle("Google Drive App");
-        stage.setScene(SceneManager.loadScene(SceneManager.INDEX_PATH));
+        stage.setScene(new Scene(SceneManager.getIndexComponents().getParent()));
         stage.setResizable(false);
         stage.show();
     }

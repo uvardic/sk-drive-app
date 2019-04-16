@@ -19,7 +19,8 @@
         <JFXComboBox fx:id="groups" promptText="Group" styleClass="box" editable="true"/>
     </VBox>
     <VBox alignment="TOP_CENTER" styleClass="download_button_container">
-        <JFXButton fx:id="downloadButton" text="DOWNLOAD EXAM" styleClass="download_button" onAction="#downloadAction"/>
+        <JFXButton fx:id="downloadButton" text="DOWNLOAD EXAM" styleClass="download_button"
+                   onAction="#downloadAction"/>
     </VBox>
     <VBox alignment="TOP_CENTER">
         <Label fx:id="message" styleClass="error"/>

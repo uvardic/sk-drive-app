@@ -5,17 +5,14 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import exceptions.FileNotFoundException;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import system.FileSystem;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import static util.Preconditions.checkNotNull;
 
-public class DownloadController implements Initializable {
+public class DownloadController {
 
     @FXML
     private JFXComboBox<String> groups;
@@ -26,14 +23,11 @@ public class DownloadController implements Initializable {
     @FXML
     private Label message;
 
-    private IndexController indexController;
-
     private FileSystem<File> driveService;
 
-    public DownloadController() {}
+    private List<File> children;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {}
+    public DownloadController() {}
 
     JFXButton getDownloadButton() {
         return downloadButton;
@@ -55,16 +49,8 @@ public class DownloadController implements Initializable {
         message.setText(value);
     }
 
-    void setDriveService(final FileSystem<File> driveService) {
-        this.driveService = checkNotNull(driveService);
-    }
-
-    private File root;
-
-    private List<File> children;
-
     void initializeGroups() {
-        root = driveService.findDirectory(IndexController.ROOT_DIRECTORY).get(0);
+        final File root = driveService.findDirectory(IndexController.ROOT_DIRECTORY).get(0);
 
         children = driveService.findFileByParent(root);
 
@@ -75,25 +61,32 @@ public class DownloadController implements Initializable {
         groups.getSelectionModel().select(0);
     }
 
+    void setDriveService(final FileSystem<File> driveService) {
+        this.driveService = checkNotNull(driveService);
+    }
+
     public void downloadAction() {
         final String selected = groups.getValue();
 
-        final boolean selectedExists = children.stream()
-                .map(File::getName)
-                .anyMatch(selected::equals);
-
-        if (!selectedExists)
+        if (!selectedExists(selected)) {
             showErrorMessage("Invalid group");
-        else {
-            try {
-                driveService.download(String.format("%s/%s/%s.txt",
-                        IndexController.ROOT_DIRECTORY, selected, selected));
-            } catch (FileNotFoundException e) {
-                showErrorMessage(String.format("%s.txt not found", selected));
-                return;
-            }
+            return;
+        }
+
+        try {
+            driveService.download(String.format("%s/%s/%s.txt",
+                    IndexController.ROOT_DIRECTORY, selected, selected));
+        } catch (FileNotFoundException e) {
+            showErrorMessage(String.format("%s.txt not found", selected));
+            return;
         }
 
         showApprovedMessage(String.format("%s.txt downloaded", selected));
+    }
+
+    private boolean selectedExists(final String selected) {
+        return children.stream()
+                .map(File::getName)
+                .anyMatch(selected::equals);
     }
 }

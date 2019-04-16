@@ -12,7 +12,7 @@
         <SceneManager fx:constant="HEIGHT"/>
     </prefHeight>
     <HBox>
-        <fx:include source="SideMenu.fxml" fx:id="sideMenu"/>
+        <Pane fx:id="menu"/>
         <Pane fx:id="content"/>
     </HBox>
 </VBox>
