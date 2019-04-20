@@ -84,9 +84,9 @@ public class UploadController {
             showErrorMessage(String.format("Error while uploading %s", compressed.getName()));
             e.printStackTrace();
         }
-
-        SceneManager.changeStyleClass(message, "approved");
-        message.setText("Response uploaded");
+//
+//        SceneManager.changeStyleClass(message, "approved");
+//        message.setText("Response uploaded");
 
         //noinspection ResultOfMethodCallIgnored
         compressed.delete();

@@ -37,7 +37,7 @@ public class IndexController implements Initializable {
 
     @SuppressWarnings("unchecked")
     private void initializeDriveService() {
-        driveService = FileSystemManager.getFileSystem(DriveFileSystemImplementation.class);
+        driveService = FileSystemManager.getFileSystem(DriveFileSystemImplementation.class.getName());
 
         driveService.initialize();
 

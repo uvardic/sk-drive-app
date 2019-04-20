@@ -21,8 +21,19 @@ repositories {
 
 libsDirName = '../../sk-libs'
 
-jar {
+task uberJar(type: Jar) {
     version = (findProperty('sk_drive_app_version'))
+
+    from sourceSets.main.output
+
+    dependsOn configurations.runtimeClasspath
+    from {
+        configurations.runtimeClasspath.findAll { it.name.endsWith('jar') }.collect { zipTree(it) }
+    }
+
+    manifest {
+        attributes 'Main-Class': 'app.App'
+    }
 }
 
 dependencies {
